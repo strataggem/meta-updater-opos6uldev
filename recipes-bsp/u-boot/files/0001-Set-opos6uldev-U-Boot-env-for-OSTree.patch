@@ -157,7 +157,7 @@ index b634d9e..b823d67 100644
 +	\
 +	"load_uEnv=load mmc 0:2 $loadaddr /boot/loader/uEnv.txt && env import -t $loadaddr $filesize\0" \
 +	"set_root_bootargs=setenv bootargs ${bootargs} root=/dev/ram0 rw\0" \
-+	"emmcboot=run load_uEnv && run set_root_bootargs && load mmc 0:1 ${fdtaddr} /imx6ul-${fdtname}.dtb && load mmc 0:2 ${loadaddr} /boot/${kernel_image} && load mmc 0:2 ${ramdiskaddr} /boot/${ramdisk_image} && bootz ${loadaddr} ${ramdiskaddr} ${fdtaddr}\0" \
++	"emmcboot=run load_uEnv && run set_root_bootargs && load mmc 0:1 ${fdtaddr} /${cpu_type}-${fdtname}.dtb && load mmc 0:2 ${loadaddr} /boot/${kernel_image} && load mmc 0:2 ${ramdiskaddr} /boot/${ramdisk_image} && bootz ${loadaddr} ${ramdiskaddr} ${fdtaddr}\0" \
 +	\
 +	"flash_uboot_img=if mmc dev 0 1; then setexpr sz ${filesize} / 0x200; setexpr sz ${sz} + 1; if mmc write ${loadaddr} 0x8a ${sz}; then echo Flashing of U-boot image succeed; else echo Flashing of U-boot image failed; fi; fi;\0" \
 +	"flash_uboot_spl=if mmc dev 0 1; then setexpr sz ${filesize} / 0x200; setexpr sz ${sz} + 1; if mmc write ${loadaddr} 0x2 ${sz}; then echo Flashing of U-boot SPL succeed; else echo Flashing of U-boot SPL failed; fi; fi;\0" \
